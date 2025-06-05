@@ -1,6 +1,6 @@
 import { ref, type Ref, computed } from 'vue'
-import axios from 'axios'
 import type { Pokemon } from '../interface/pokemon'
+import api  from './api'
 
 export function useFetch(url: string) {
     const pokemon: Ref<Pokemon | null> = ref(null)
@@ -13,7 +13,8 @@ export function useFetch(url: string) {
         loading.value = true
         try {
             num.value = Math.floor(Math.random() * 1025) + 1
-            const response = await axios.get<Pokemon>(url + num.value)
+            const response = await api.get<Pokemon>(url + '/' + num.value)
+            console.log(response)
             await new Promise(resolve => setTimeout(resolve, 1000))
             pokemon.value = response.data
             error.value = null

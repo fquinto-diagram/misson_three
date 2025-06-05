@@ -64,13 +64,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-import { useApiConfig } from './composables/api'
+import { computed, ref } from 'vue'
+import api from './composables/api'
 import { useFetch } from './composables/apiFetch'
 import PokeButton from './PokeButton.vue'
 
 const hasStarted = ref(false)
-const { apiUrl } = useApiConfig()
+const apiURL = ref(api.defaults.baseURL as string)
 const { 
   pokeName, 
   pokeTypes,
@@ -80,7 +80,7 @@ const {
   fetchData, 
   toggleShiny, 
   isShiny 
-} = useFetch(apiUrl)
+} = useFetch(apiURL.value)
 
 const startSearch = () => {
   hasStarted.value = true
