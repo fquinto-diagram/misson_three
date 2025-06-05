@@ -4,7 +4,7 @@
       <div v-if="!hasStarted" class="flex flex-col items-center justify-center p-12 space-y-6">
         <img src="/pokeball.png" alt="Pokeball" class="w-32 h-32 animate-bounce" />
         <h2 class="text-3xl font-bold text-gray-800">¡Encuentra tu Pokémon!</h2>
-        <PokeButton @click="startSearch" />
+        <PokeButton text="Buscar Pokèmon" @click="startSearch" />
       </div>
 
       <div v-else-if="loading" class="flex flex-col items-center justify-center p-12 gap-8">
@@ -49,7 +49,7 @@
             </div>
           </div>
 
-          <PokeButton @click="fetchData" class="mt-6" />
+          <PokeButton text="Nuevo Pokèmon" @click="fetchData" class="mt-6" />
         </div>
       </div>
 
