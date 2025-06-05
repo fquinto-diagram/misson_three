@@ -64,7 +64,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import api from './composables/api'
 import { useFetch } from './composables/apiFetch'
 import PokeButton from './PokeButton.vue'

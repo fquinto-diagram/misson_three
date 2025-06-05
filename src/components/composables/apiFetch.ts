@@ -1,4 +1,4 @@
-import { ref, type Ref, computed } from 'vue'
+import { ref, type Ref, computed } from 'vue'   
 import type { Pokemon } from '../interface/pokemon'
 import api  from './api'
 
@@ -6,17 +6,15 @@ export function useFetch(url: string) {
     const pokemon: Ref<Pokemon | null> = ref(null)
     const error: Ref<Error | null> = ref(null)
     const loading = ref(false)
-    const num = ref(Math.floor(Math.random() * 1025) + 1)
     const isShiny = ref(false)
 
     const fetchData = async () => {
         loading.value = true
         try {
-            num.value = Math.floor(Math.random() * 1025) + 1
-            const response = await api.get<Pokemon>(url + '/' + num.value)
-            console.log(response)
+            const num = ref(Math.floor(Math.random() * 1025) + 1)
+            const { data } = await api.get<Pokemon>(`${url}/${num.value}`)
             await new Promise(resolve => setTimeout(resolve, 1000))
-            pokemon.value = response.data
+            pokemon.value = data 
             error.value = null
         } catch (e) {
             error.value = e as Error
